@@ -1,9 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div id="container">
+    <div id="logincontainer">
+      <ion-card>
+        <ion-card-header>
+          <div class="centerDiv">
+            <!--                       <img id="logo" src="assets/icon/logo-sat-black.png"> -->
+          </div>
+        </ion-card-header>
+        <form class="form" (ngSubmit)="onLogin()">
+          <ion-item lines="none">
+            <ion-label class="login-text">Introduzca sus credenciales</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input class="login-input" name="email" [type]="email" [(ngModel)]="codigoempleado" placeholder="Email">
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input class="login-input" name="passw" [type]="pswdType" [(ngModel)]="dniempleado"
+              placeholder="Contraseña">
+            </ion-input>
+            <ion-button fill="clear" [disabled]="pswdType == 'text'" (click)="showPassword()">
+              <ion-icon slot="icon-only" [name]="eyeIcon"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-checkbox name="isAutoLoginChecked" [(ngModel)]="isAutoLoginChecked"></ion-checkbox>
+            <ion-label class="login-check">Recordar datos</ion-label>
+          </ion-item>
+          <ion-button class="login-button" [disabled]="isLoggingIn()" expand="block" color="primary" fill="solid"
+            type="submit">
 
+            <ion-label>
+              <ion-spinner style="margin:0 auto;height: 12px; width: 12px;" *ngIf="isLoggingIn()">
+              </ion-spinner>
+              ENTRAR
+            </ion-label>
+          </ion-button>
+        </form>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
