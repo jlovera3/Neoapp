@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GastosPageRoutingModule } from './gastos-routing.module';
+import { PostPageRoutingModule } from './post-routing.module';
 
-import { GastosPage } from './gastos.page';
+import { PostPage } from './post.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GastosPageRoutingModule
+    PostPageRoutingModule
   ],
-  declarations: [GastosPage]
+  declarations: [PostPage]
 })
-export class GastosPageModule {}
+export class PostPageModule {}

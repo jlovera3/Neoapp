@@ -6,6 +6,18 @@ export const environment = {
   production: false
 };
 
+export const routes = {
+  base: 'http://192.168.1.103:3000/api', //?size=9&page=0&title=eee
+  register: '/user/register',
+  login: '/user/login',
+  logout: '/user/logout',
+  token: '/user/token',
+  createpost: '/post',
+  getPost: '/post/',
+  getfeed: '/post',
+  test: '/test',
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
