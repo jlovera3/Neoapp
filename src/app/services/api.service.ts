@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { environment, routes } from 'src/environments/environment';
+import { User } from '../models/User';
 
 const ACCESS_TOKEN_KEY = 'acctoken';
 const REFRESH_TOKEN_KEY = 'reftoken';
@@ -13,7 +14,7 @@ const REFRESH_TOKEN_KEY = 'reftoken';
   providedIn: 'root'
 })
 export class ApiService {
-
+  static user: User;
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
 
@@ -60,6 +61,11 @@ export class ApiService {
   }
 
   loginUser(email: string, password: string): Observable<any> {
+    ApiService.user = {
+      "email":email,
+      "nick":"",
+      "token": ""
+    }
     return this.http.post(routes.base + routes.login, { email, password }).pipe(
       switchMap((tokens: { accessToken, refreshToken }) => {
         this.currentAccessToken = tokens.accessToken;

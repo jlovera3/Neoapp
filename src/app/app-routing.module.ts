@@ -17,18 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'post/:post_id',
-    loadChildren: () => import('./pages/post/post.module').then( m => m.PostPageModule),
-    canLoad: [AuthGuard]
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canLoad: [AuthGuard]
-  },
-  {
-    path: 'createpost',
-    loadChildren: () => import('./pages/createpost/createpost.module').then( m => m.CreatepostPageModule),
     canLoad: [AuthGuard]
   },
 ];

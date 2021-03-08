@@ -7,7 +7,7 @@ export const environment = {
 };
 
 export const routes = {
-  base: 'http://192.168.1.103:3000/api', //?size=9&page=0&title=eee
+  base: 'http://localhost:3001/api', //?size=9&page=0&title=eee
   register: '/user/register',
   login: '/user/login',
   logout: '/user/logout',
