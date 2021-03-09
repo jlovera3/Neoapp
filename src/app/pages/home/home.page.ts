@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, MenuController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,9 +11,17 @@ export class HomePage {
   secretData = null;
 
   constructor(private apiSvc: ApiService,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private menuCtrl: MenuController) {
 
   }
+
+  
+  
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+  }
+  
 
   async getData() {
     this.secretData = null;

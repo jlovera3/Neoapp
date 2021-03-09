@@ -1,5 +1,6 @@
 <ion-content>
   <div id="container">
+    <div id="logincontainer">
     <ion-card>
       <ion-card-header>
         <ion-img class="logo" type="image/png" src="assets/img/indice.jpg"></ion-img>
@@ -11,9 +12,12 @@
         <ion-input formControlName="password" type="password" class="forminput" placeholder="Contraseña" required></ion-input>
 
         <ion-button type="submit" [disabled]="registerForm.invalid || isRegistering" class="formbutton" expand="block">Regístrate</ion-button>
-      </form>
+      </form>        
+        <ion-item>
+          <p>¿Tienes cuenta? Ve a <ion-router-link [routerLink]="['/login']">Login</ion-router-link>
+          </p>
+        </ion-item>
     </ion-card>
-    <p>¿Tienes cuenta? Ve a <ion-router-link [routerLink]="['/login']">Login</ion-router-link>
-    </p>
+  </div>
   </div>
 </ion-content>

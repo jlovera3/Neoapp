@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -19,7 +19,8 @@ export class RegisterPage implements OnInit {
     private apiSvc: ApiService,
     private alertController: AlertController,
     private router: Router,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private menuCtrl: MenuController) {
     this.registerForm = this.formBuilder.group({
       nick: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
@@ -29,6 +30,12 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
+
+  
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+  
 
   async register() {
     const loading = await this.loadingController.create();

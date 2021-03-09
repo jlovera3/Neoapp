@@ -1,0 +1,64 @@
+ion-menu {
+    --ion-background-color: var(--ion-color-ptv-black);
+    --ion-text-color: var(--ion-color-ptv-primary);
+
+    ion-toolbar {
+        --background: var(--ion-color-ptv-blue);
+        --inner-padding-top: 0px;
+    }
+}
+
+.settings-icon {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+}
+
+.active-menu {
+    --background: var(--ion-color-ptv-blue-active) !important;
+    background: var(--ion-color-ptv-blue-active) !important;
+    --ion-background-color: var(--ion-color-ptv-blue-active) !important;
+}
+
+.user-cont {
+    color: #fff;
+    text-align: center;
+    margin: 0px 0px 0 0px;
+    font-size: 1.5em;
+    margin-top: 5%;
+}
+
+.white-icon {
+    color: white;
+}
+
+.user-name {
+    text-align: center;
+    font-weight: 100 !important;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 1.2rem !important;
+    margin-bottom: 5px;
+
+    span {
+        color: #fff !important;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-size: medium;
+    }
+}
+
+.red {
+    --background: red;
+    color: white;
+}
+
+.limit-size {
+    --side-max-width: 25%;
+    --side-min-width: 25%;
+}
+
+.version {
+    margin-left: 8px;
+    color: white;
+}

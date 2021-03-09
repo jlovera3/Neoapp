@@ -40,3 +40,74 @@
     margin: 16px;
     text-transform: none !important;
 }
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+ion-card {
+    max-width: 400px;
+}
+
+ion-content {
+    --background: url(/assets/img/grass.jpg);
+}
+
+#container strong {
+    font-size: 1.3rem;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 1rem;
+    line-height: 22px;
+
+    color: #8c8c8c;
+
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+.centerDiv {
+    text-align: center;
+}
+
+#logincontainer {
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    ion-card {
+        margin: auto !important;
+    }
+}
+
+.login-text {
+    text-align: center;
+    font-size: small;
+}
+
+.login-check {
+    text-align: left;
+    font-size: small;
+    margin-left: 1em;
+}
+
+.login-button {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.login-input {
+    text-align: left;
+}
+
+.form {
+    padding-bottom: 8px;
+}

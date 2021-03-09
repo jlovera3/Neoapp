@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -21,14 +21,19 @@ export class LoginPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private loadingController: LoadingController,
-    private storage : Storage) {
+    private storage : Storage,
+    private menuCtrl: MenuController) {
 
     this.loginForm = this.formBuilder.group({
       email: ['test@test.com', [Validators.required, Validators.email]],
       password: ['testtest', [Validators.required]]
     })
   }
-
+  
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+  
   ngOnInit() {
   }
 

@@ -1,18 +1,27 @@
+
 <ion-content>
   <div id="container">
-    <ion-card>
-      <ion-card-header>
-        <ion-img class="logo" type="image/png" src="assets/img/indice.jpg"></ion-img>
+    <div id="logincontainer">
+      <ion-card>
+        <ion-card-header>
+          <div class="centerDiv">
+            <ion-img class="logo" type="image/png" src="assets/img/indice.jpg"></ion-img>
+          </div>
+        </ion-card-header>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <ion-input formControlName="email" type="email" class="forminput" placeholder="Correo electrónico" required>
+          </ion-input>
+          <ion-input formControlName="password" type="password" class="forminput" placeholder="Contraseña" required>
+          </ion-input>
 
-      </ion-card-header>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <ion-input formControlName="email" type="email" class="forminput" placeholder="Correo electrónico" required></ion-input>
-        <ion-input formControlName="password" type="password" class="forminput" placeholder="Contraseña" required></ion-input>
-
-        <ion-button type="submit" [disabled]="loginForm.invalid || isLoggingIn" class="formbutton" expand="block">Acceder</ion-button>
-      </form>
-    </ion-card>
-    <p>¿Aún no tienes cuenta? <ion-router-link [routerLink]="['/register']">Regístrate</ion-router-link>
-    </p>
+          <ion-button type="submit" [disabled]="loginForm.invalid || isLoggingIn" class="formbutton" expand="block">
+            Acceder</ion-button>
+        </form>
+          <ion-item style="text-align: center;">
+            <p>¿Aún no tienes cuenta? <ion-router-link [routerLink]="['/register']">Regístrate</ion-router-link>
+            </p>
+          </ion-item>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
