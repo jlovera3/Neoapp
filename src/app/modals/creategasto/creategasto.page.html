@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo gasto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Socio </ion-label>
+        <ion-select [(ngModel)]="socioID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" (ionChange)="socioChanged()">
+          <ion-select-option *ngFor="let item of socios" value="{{item._id}}">{{item.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="socioSelected">
+        <ion-label>Parcela </ion-label>
+        <ion-select [(ngModel)]="parcelaID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" (ionChange)="parcelaChanged()">
+          <ion-select-option *ngFor="let item of parcelas" value="{{item._id}}">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item  *ngIf="parcelaSelected">
+        <ion-label>Cultivo </ion-label>
+        <ion-select [(ngModel)]="cultivoID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" >
+          <ion-select-option *ngFor="let item of cultivos">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

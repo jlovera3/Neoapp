@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, MenuController } from '@ionic/angular';
+import { CreategastoPage } from 'src/app/modals/creategasto/creategasto.page';
 import { ApiService } from 'src/app/services/api.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-gastos',
@@ -12,7 +14,8 @@ export class GastosPage implements OnInit {
   secretData = null;
 
   constructor(private apiSvc: ApiService,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private ui: UiService) {
 
   }
 
@@ -42,6 +45,13 @@ export class GastosPage implements OnInit {
 
   gotoPost() {
     
+  }
+
+  async openModal(){
+    await this.ui.showModal(
+      {
+        component: CreategastoPage
+      })
   }
 
 }

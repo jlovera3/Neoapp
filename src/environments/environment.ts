@@ -12,8 +12,18 @@ export const routes = {
   login: '/user/login',
   logout: '/user/logout',
   token: '/user/token',
+  //---------GASTOS---------------
   getAllGastos:'/gasto',
   getGasto:'/gasto/', //:gastoID
+
+  //---------SOCIOS---------------
+  getAllSocios: '/socio',
+
+  //---------PARCELAS-------------
+  getParcelasOfSocio: '/parcelas/',
+
+  //---------CULTIVOS-------------
+  getCultivosOfParcela: '/cultivos/',
 };
 
 /*

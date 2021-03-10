@@ -25,7 +25,11 @@ const routes: Routes = [
     path: 'gastos',
     loadChildren: () => import('./pages/gastos/gastos.module').then( m => m.GastosPageModule),
     canLoad: [AuthGuard]
+  },  {
+    path: 'creategasto',
+    loadChildren: () => import('./modals/creategasto/creategasto.module').then( m => m.CreategastoPageModule)
   },
+
 
 ];
 

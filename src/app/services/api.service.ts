@@ -44,9 +44,22 @@ export class ApiService {
   getAllGastos(): Observable<any> {
     return this.http.get(routes.base + routes.getAllGastos);
   }
+  
+  getAllSocios(): Observable<any> {
+    return this.http.get(routes.base + routes.getAllSocios);
+  }
 
   getGasto(gastoId: string): Observable<any> {
     return this.http.get(routes.base + routes.getGasto + gastoId);
+  }
+  
+  getParcelasOfSocio(socioID: string): Observable<any> {
+    return this.http.get(routes.base + routes.getParcelasOfSocio + socioID);
+  }
+
+  
+  getCultivosOfParcela(parcelaID: string): Observable<any> {
+    return this.http.get(routes.base + routes.getCultivosOfParcela + parcelaID);
   }
 
   registerUser(nick: string, email: string, password: string): Observable<any> {
@@ -62,9 +75,12 @@ export class ApiService {
 
   loginUser(email: string, password: string): Observable<any> {
     ApiService.user = {
-      "email":email,
-      "nick":"",
-      "token": ""
+      email:email,
+      nick:"",
+      token: "",
+      centroSupervisado:"",
+      role:"",
+      id:""
     }
     return this.http.post(routes.base + routes.login, { email, password }).pipe(
       switchMap((tokens: { accessToken, refreshToken }) => {
