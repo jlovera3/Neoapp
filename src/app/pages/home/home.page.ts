@@ -11,14 +11,15 @@ export class HomePage {
 
   constructor(private apiSvc: ApiService,
     private loadingController: LoadingController,
-    private menuCtrollr: MenuController) {
+    private menuCtrl : MenuController) {
 
   }
 
   
   
   ionViewWillEnter() {
-    this.menuCtrollr.enable(true)
+    
+    this.menuCtrl.enable(true);
   }
 
 

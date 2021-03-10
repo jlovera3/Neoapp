@@ -74,7 +74,7 @@ export class AppComponent {
   }
 
   usuario = () =>{
-    return ApiService.user.email;
+    return this.apiSvc.user?.nick ? this.apiSvc.user?.nick : "No disponible";
   }
   
   async logout() {
@@ -92,9 +92,5 @@ export class AppComponent {
     } else {
       this.isSettingsOpen = !this.isSettingsOpen;
     }
-  }
-
-  ionViewDidLeave(){    
-    this.menuCtrl.enable(true);
   }
 }

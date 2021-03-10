@@ -44,7 +44,8 @@ export class LoginPage implements OnInit {
     await loading.present();
 
     this.apiSvc.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe(
-      async _ => {
+      async data => {
+        console.log(data);
         await loading.dismiss();
         this.router.navigateByUrl('/home', { replaceUrl: true });
         this.isLogginIn = false;
