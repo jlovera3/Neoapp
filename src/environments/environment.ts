@@ -12,10 +12,8 @@ export const routes = {
   login: '/user/login',
   logout: '/user/logout',
   token: '/user/token',
-  createpost: '/post',
-  getPost: '/post/',
-  getfeed: '/post',
-  test: '/test',
+  getAllGastos:'/gasto',
+  getGasto:'/gasto/', //:gastoID
 };
 
 /*

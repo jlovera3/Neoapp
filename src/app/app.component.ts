@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MenuController, Platform } from '@ionic/angular';
+import { LoadingController, MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ApiService } from './services/api.service';
@@ -14,8 +14,12 @@ import { Subscription } from 'rxjs';
 export class AppComponent {
   navigate: any = [
     {
-      title: "GASTOS",
+      title: "PRINCIPAL",
       url: "/home",
+      icon: "calendar-outline"
+    },    {
+      title: "GASTOS",
+      url: "/gastos",
       icon: "calendar-outline"
     },
     {
@@ -44,7 +48,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private apiSvc : ApiService,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private loadingController : LoadingController
   ) {
     this.initializeApp();
   }
@@ -72,6 +77,13 @@ export class AppComponent {
     return ApiService.user.email;
   }
   
+  async logout() {
+    const loading = await this.loadingController.create({ animated: true, message: 'Saliendo...' });
+    await loading.present();
+    this.apiSvc.logout();
+    await loading.dismiss();
+  }
+  
   openSettings() {
     if (this.isSettingsOpen) {
       setTimeout(() => {
@@ -80,5 +92,9 @@ export class AppComponent {
     } else {
       this.isSettingsOpen = !this.isSettingsOpen;
     }
+  }
+
+  ionViewDidLeave(){    
+    this.menuCtrl.enable(true);
   }
 }

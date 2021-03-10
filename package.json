@@ -74,6 +74,9 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {}
-    }
+    },
+    "platforms": [
+      "browser"
+    ]
   }
 }

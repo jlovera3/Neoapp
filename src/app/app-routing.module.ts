@@ -21,6 +21,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'gastos',
+    loadChildren: () => import('./pages/gastos/gastos.module').then( m => m.GastosPageModule),
+    canLoad: [AuthGuard]
+  },
+
 ];
 
 @NgModule({

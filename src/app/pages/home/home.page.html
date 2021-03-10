@@ -1,32 +1,9 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons>
-      <ion-menu-button menu="first"></ion-menu-button>
-    </ion-buttons>
-      Gastos
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Principal</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="share"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button [routerLink]="['/createpost']">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-  <ion-button expand="full" (click)="getData()">Get All</ion-button>
-  <ion-card>
-    <ion-card-content>
-      {{ secretData }}
-    </ion-card-content>
-  </ion-card>
+
 </ion-content>

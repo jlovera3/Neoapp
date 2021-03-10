@@ -41,12 +41,12 @@ export class ApiService {
     }
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(routes.base + routes.getfeed);
+  getAllGastos(): Observable<any> {
+    return this.http.get(routes.base + routes.getAllGastos);
   }
 
-  getPost(postId: string): Observable<any> {
-    return this.http.get(routes.base + routes.getPost + postId);
+  getGasto(gastoId: string): Observable<any> {
+    return this.http.get(routes.base + routes.getGasto + gastoId);
   }
 
   registerUser(nick: string, email: string, password: string): Observable<any> {

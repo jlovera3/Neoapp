@@ -3,17 +3,13 @@
     <ion-menu (ionDidClose)="closedMenu()" (ionDidOpen)="openedMenu()" side="start" menuId="first" contentId="content1">
       <ion-header>
         <ion-toolbar>
-          <ion-list class="ion-no-padding" lines="none">
-            <ion-item>
-              <ion-grid>
-                <ion-row>
-                  <ion-col>
-                    <p class="user-name">Hola,<span><strong><!--  {{usuario()}} --></strong></span></p>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-item>
-          </ion-list>
+          <ion-title>
+            <p class="user-name">Hola,<span><strong>
+                  <!--  {{usuario()}} -->
+                </strong></span></p>
+
+          </ion-title>
+
         </ion-toolbar>
       </ion-header>
       <ion-content *ngIf="isSettingsOpen; else configuracion">
@@ -27,7 +23,7 @@
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
-         
+
           <ion-list style="margin-top: 5%;">
             <ion-menu-toggle menu="first" autoHide="false">
               <ion-item (click)="logout()">
@@ -35,17 +31,12 @@
                 SALIR
               </ion-item>
             </ion-menu-toggle>
-            <ion-item lines="none" (click)="openSettings()">
-              <ion-icon class="white-icon" name="settings-outline" slot="start">
-              </ion-icon>
-              CONFIGURACIÓN
-            </ion-item>
           </ion-list>
 
         </div>
       </ion-content>
 
-     
+
 
       <ng-template #configuracion>
         <ion-content>
@@ -83,7 +74,8 @@
       </ng-template>
     </ion-menu>
     <ion-router-outlet id="content1"></ion-router-outlet>
-  </ion-split-pane><!-- 
+  </ion-split-pane>
+  <!-- 
   <ion-header class="red" *ngIf="isDisconnectedFromNet">
     <ion-toolbar>
       NO DISPONES DE CONEXIÓN A INTERNET
