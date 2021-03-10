@@ -10,13 +10,16 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomePage {
 
   constructor(private apiSvc: ApiService,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private menuCtrl : MenuController) {
 
   }
 
   
   
   ionViewWillEnter() {
+    
+    this.menuCtrl.enable(true);
   }
 
 

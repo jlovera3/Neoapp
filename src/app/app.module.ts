@@ -27,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     IonicStorageModule.forRoot(
       {
-      name: '_foodgram',
+      name: '_neosol',
       driverOrder: ['indexeddb', 'sqlite', 'websql'],
 
       }),

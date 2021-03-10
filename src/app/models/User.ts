@@ -1,5 +1,5 @@
 export interface User {
-    id: string,
+    _id: string,
     nick: string,
     email: string,
     centroSupervisado: string,

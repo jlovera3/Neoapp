@@ -9,18 +9,15 @@ import { User } from '../models/User';
 
 const ACCESS_TOKEN_KEY = 'acctoken';
 const REFRESH_TOKEN_KEY = 'reftoken';
+const USER_KEY = 'user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  static user: User;
+  user: User = null;
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
-
-  userInfo = {
-    email: 'test@test.com'
-  }
 
 
   constructor(private http: HttpClient,
@@ -31,6 +28,7 @@ export class ApiService {
 
   async loadToken() {
     const token = await this.storage.get(ACCESS_TOKEN_KEY);
+    const user = await this.storage.get(USER_KEY)
     if (token) {
       console.log('Works');
       this.currentAccessToken = token;
@@ -38,6 +36,9 @@ export class ApiService {
       this.router.navigateByUrl('/home');
     } else {
       this.isAuthenticated.next(false);
+    }
+    if (user) {
+      this.user = user;
     }
   }
 
@@ -61,21 +62,26 @@ export class ApiService {
   }
 
   loginUser(email: string, password: string): Observable<any> {
-    ApiService.user = {
-      "email":email,
-      "nick":"",
-      "token": ""
+    this.user = {
+      email: email,
+      nick: "",
+      centroSupervisado: "",
+      _id: "",
+      role: "",
+      token: ""
     }
     return this.http.post(routes.base + routes.login, { email, password }).pipe(
-      switchMap((tokens: { accessToken, refreshToken }) => {
-        this.currentAccessToken = tokens.accessToken;
-        const storeAccess = this.storage.set(ACCESS_TOKEN_KEY, tokens.accessToken);
-        const storeRefresh = this.storage.set(REFRESH_TOKEN_KEY, tokens.refreshToken);
-        return from(Promise.all([storeAccess, storeRefresh]));
+      switchMap((data: { accessToken, refreshToken, user }) => {
+        console.log(data.user);
+        this.user = data.user;
+        this.currentAccessToken = data.accessToken;
+        const storeAccess = this.storage.set(ACCESS_TOKEN_KEY, data.accessToken);
+        const storeRefresh = this.storage.set(REFRESH_TOKEN_KEY, data.refreshToken);
+        const userData = this.storage.set(USER_KEY, data.user);
+        return from(Promise.all([storeAccess, storeRefresh, userData]));
       }),
       tap(_ => {
         this.isAuthenticated.next(true);
-        this.userInfo.email = email;
       }))
   }
 
@@ -85,7 +91,7 @@ export class ApiService {
     console.log(refreshToken);
 
     if (refreshToken) {
-      this.http.post(routes.base + routes.logout, { refreshToken, email : this.userInfo.email })
+      this.http.post(routes.base + routes.logout, { refreshToken, email: this.user.email })
         .subscribe()
     }
 
@@ -111,7 +117,7 @@ export class ApiService {
               Authorization: `${token}`
             })
           }
-          return this.http.post(routes.base + routes.token, { email: this.userInfo.email }, httpOptions);
+          return this.http.post(routes.base + routes.token, { email: this.user.email }, httpOptions);
         } else {
           // No stored refresh token
           return of(null);

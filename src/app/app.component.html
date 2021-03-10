@@ -1,17 +1,17 @@
 <ion-app>
-  <ion-split-pane class="limit-size" when="lg" contentId="content1">
+  <ion-split-pane when="lg" contentId="content1">
     <ion-menu (ionDidClose)="closedMenu()" (ionDidOpen)="openedMenu()" side="start" menuId="first" contentId="content1">
+
       <ion-header>
         <ion-toolbar>
           <ion-title>
             <p class="user-name">Hola,<span><strong>
-                  <!--  {{usuario()}} -->
+                   {{usuario()}}
                 </strong></span></p>
-
           </ion-title>
-
         </ion-toolbar>
       </ion-header>
+
       <ion-content *ngIf="isSettingsOpen; else configuracion">
         <div>
           <ion-list class="ion-no-padding" *ngFor="let pages of navigate" [class.active-menu]="activePath === pages.url"
@@ -34,51 +34,8 @@
           </ion-list>
 
         </div>
-      </ion-content>
-
-
-
-      <ng-template #configuracion>
-        <ion-content>
-
-          <ion-list>
-
-            <ion-item lines="inset" (click)="openSettings()">
-              <ion-icon expand="full" fill="clear" color="light" class="white-icon" slot="start"
-                name="caret-back-outline">
-              </ion-icon>
-              VOLVER
-            </ion-item>
-
-            <ion-item (click)="doOption(0)" lines="inset">
-              <ion-icon expand="full" fill="clear" color="light" class="white-icon" slot="start" name="nuclear-sharp">
-              </ion-icon>
-              BORRAR DATOS CACHÉ
-            </ion-item>
-
-            <ion-item (click)="doOption(1)" lines="inset">
-              <ion-icon expand="full" fill="clear" color="light" class="white-icon" slot="start" name="warning-outline">
-              </ion-icon>
-              INFORMAR DE UN PROBLEMA
-            </ion-item>
-
-            <ion-item (click)="doOption(2)" lines="inset">
-              <ion-icon expand="full" fill="clear" color="light" class="white-icon" slot="start" name="mail-outline">
-              </ion-icon>
-              CONTÁCTANOS
-            </ion-item>
-
-          </ion-list>
-
-        </ion-content>
-      </ng-template>
+      </ion-content>     
     </ion-menu>
     <ion-router-outlet id="content1"></ion-router-outlet>
   </ion-split-pane>
-  <!-- 
-  <ion-header class="red" *ngIf="isDisconnectedFromNet">
-    <ion-toolbar>
-      NO DISPONES DE CONEXIÓN A INTERNET
-    </ion-toolbar>
-  </ion-header> -->
 </ion-app>
