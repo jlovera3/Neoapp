@@ -15,6 +15,7 @@ export const routes = {
   //---------GASTOS---------------
   getAllGastos:'/gasto',
   getGasto:'/gasto/', //:gastoID
+  createGasto:'/gasto',
 
   //---------SOCIOS---------------
   getAllSocios: '/socio',

@@ -12,10 +12,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./creategasto.page.scss'],
 })
 export class CreategastoPage implements OnInit {
-  
+
   modalidad: string = "1";
 
-  private centros: Centro[]=[];
+  private centros: Centro[] = [];
   private socios: Socio[] = [];
   private parcelas: Parcela[] = [];
   private cultivos: Cultivo[] = [];
@@ -23,7 +23,7 @@ export class CreategastoPage implements OnInit {
   socioSelected: boolean = false;
   parcelaSelected: boolean = false;
 
-  centroID: string="";
+  centroID: string = "";
   socioID: string = "";
   parcelaID: string = "";
   cultivoID: string = "";
@@ -65,7 +65,7 @@ export class CreategastoPage implements OnInit {
       console.log(this.socios)
     });
   }
-  
+
   async loadCentros() {
     this.apiSvc.getAllCentros().subscribe((res: any) => {
       for (let i = 0; i < res.length; i++) {
@@ -120,10 +120,16 @@ export class CreategastoPage implements OnInit {
   create() {
     console.log('aqui se crea gasto')
     console.log(this.concepto, this.importe, this.cantidad, this.fecha)
-    if(this.modalidad=="1"){
-      this.apiSvc.createGastoSocio(this.socioID, this.parcelaID, this.cultivoID, this.concepto, this.importe, this.cantidad, this.fecha)
-    }else{
-      this.apiSvc.createGastoCentro(this.centroID, this.concepto, this.importe, this.cantidad, this.fecha)
+    if (this.modalidad == "1") {
+      this.apiSvc.createGasto([this.socioID, this.parcelaID, this.cultivoID], this.concepto, this.importe, this.cantidad, this.fecha)
+        .subscribe(data => {
+          console.log(data);
+        })
+    } else {
+      this.apiSvc.createGasto([this.centroID], this.concepto, this.importe, this.cantidad, this.fecha)
+      .subscribe(data => {
+        console.log(data);
+      })
     }
   }
 

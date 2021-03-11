@@ -145,12 +145,17 @@ export class ApiService {
     return this.http.get(routes.base + routes.getGasto + gastoId);
   }
   
-  createGastoSocio(socioID: string, parcelaID: string, cultivoID: string, concepto: string, importe: number, cantidad: number, fecha: string) {
+  createGasto(idRelacionado: string[], concepto: string, importe: number, cantidad: number, fecha: string) {
     
-  }
-  
-  createGastoCentro(centroID: string, concepto: string, importe: number, cantidad: number, fecha: string) {
-    
+    const body = {
+      idRelacionado: idRelacionado,
+      concepto: concepto,
+      importe: importe,
+      cantidad: cantidad, 
+      fecha : fecha
+    }
+
+    return this.http.post(routes.base + routes.createGasto, body);
   }
   
   //--------------------SOCIOS-------------------------------

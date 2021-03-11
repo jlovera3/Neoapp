@@ -36,7 +36,7 @@
       <ion-item *ngIf="parcelaSelected">
         <ion-label>Cultivo </ion-label>
         <ion-select [(ngModel)]="cultivoID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar">
-          <ion-select-option *ngFor="let item of cultivos">{{item.name}}</ion-select-option>
+          <ion-select-option *ngFor="let item of cultivos" value="{{item._id}}">{{item.name}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
