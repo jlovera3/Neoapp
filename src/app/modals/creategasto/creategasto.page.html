@@ -7,27 +7,102 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-
+      <ion-segment scrollable value="1" [(ngModel)]="modalidad">
+        <ion-segment-button value="1">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Socio</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Centro</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content *ngIf="modalidad=='1'">
       <ion-item>
         <ion-label>Socio </ion-label>
-        <ion-select [(ngModel)]="socioID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" (ionChange)="socioChanged()">
+        <ion-select [(ngModel)]="socioID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar"
+          (ionChange)="socioChanged()">
           <ion-select-option *ngFor="let item of socios" value="{{item._id}}">{{item.nombre}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item *ngIf="socioSelected">
         <ion-label>Parcela </ion-label>
-        <ion-select [(ngModel)]="parcelaID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" (ionChange)="parcelaChanged()">
+        <ion-select [(ngModel)]="parcelaID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar"
+          (ionChange)="parcelaChanged()">
           <ion-select-option *ngFor="let item of parcelas" value="{{item._id}}">{{item.name}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item  *ngIf="parcelaSelected">
+      <ion-item *ngIf="parcelaSelected">
         <ion-label>Cultivo </ion-label>
-        <ion-select [(ngModel)]="cultivoID" placeholder="Seleccione uno"  interface="action-sheet" okText="Aceptar" >
+        <ion-select [(ngModel)]="cultivoID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar">
           <ion-select-option *ngFor="let item of cultivos">{{item.name}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
+
+    <ion-card-content *ngIf="modalidad=='2'">
+      <ion-item>
+        <ion-label>Centro </ion-label>
+        <ion-select [(ngModel)]="centroID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar">
+          <ion-select-option *ngFor="let item of centros" value="{{item._id}}">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+
   </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-label>Concepto</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input [(ngModel)]="concepto" placeholder="concepto"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-label>Cantidad</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input [(ngModel)]="cantidad" type="number" placeholder="cantidad"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-label>Importe</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input [(ngModel)]="importe" type="number" placeholder="importe"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-label>Fecha</ion-label>
+          </ion-col>
+          <ion-col size="8">
+            <ion-datetime [(ngModel)]="fecha" display-timezone="utc"></ion-datetime>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="secondary" (click)="create()" expand="full">Aceptar</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" (click)="cancelar()" expand="full">Cancelar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

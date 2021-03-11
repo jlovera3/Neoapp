@@ -26,6 +26,8 @@ export class ApiService {
     this.loadToken();
   }
 
+  //---------------------REGISTRO--------------------------
+
   async loadToken() {
     const token = await this.storage.get(ACCESS_TOKEN_KEY);
     const user = await this.storage.get(USER_KEY)
@@ -42,27 +44,7 @@ export class ApiService {
     }
   }
 
-  getAllGastos(): Observable<any> {
-    return this.http.get(routes.base + routes.getAllGastos);
-  }
   
-  getAllSocios(): Observable<any> {
-    return this.http.get(routes.base + routes.getAllSocios);
-  }
-
-  getGasto(gastoId: string): Observable<any> {
-    return this.http.get(routes.base + routes.getGasto + gastoId);
-  }
-  
-  getParcelasOfSocio(socioID: string): Observable<any> {
-    return this.http.get(routes.base + routes.getParcelasOfSocio + socioID);
-  }
-
-  
-  getCultivosOfParcela(parcelaID: string): Observable<any> {
-    return this.http.get(routes.base + routes.getCultivosOfParcela + parcelaID);
-  }
-
   registerUser(nick: string, email: string, password: string): Observable<any> {
 
     const body = {
@@ -144,4 +126,53 @@ export class ApiService {
     this.currentAccessToken = accessToken;
     return from(this.storage.set(ACCESS_TOKEN_KEY, accessToken));
   }
+
+  //--------------------CENTROS------------------------------
+  
+  getAllCentros(): Observable<any> {
+    return this.http.get(routes.base + routes.getAllCentros);
+  }
+
+
+  //--------------------GASTOS-------------------------------
+
+  getAllGastos(): Observable<any> {
+    return this.http.get(routes.base + routes.getAllGastos);
+  }
+
+  
+  getGasto(gastoId: string): Observable<any> {
+    return this.http.get(routes.base + routes.getGasto + gastoId);
+  }
+  
+  createGastoSocio(socioID: string, parcelaID: string, cultivoID: string, concepto: string, importe: number, cantidad: number, fecha: string) {
+    
+  }
+  
+  createGastoCentro(centroID: string, concepto: string, importe: number, cantidad: number, fecha: string) {
+    
+  }
+  
+  //--------------------SOCIOS-------------------------------
+
+  getAllSocios(): Observable<any> {
+    return this.http.get(routes.base + routes.getAllSocios);
+  }
+
+
+  
+  //--------------------PARCELAS-------------------------------
+  
+  getParcelasOfSocio(socioID: string): Observable<any> {
+    return this.http.get(routes.base + routes.getParcelasOfSocio + socioID);
+  }
+
+
+  
+  //--------------------CULTIVOS-------------------------------
+  
+  getCultivosOfParcela(parcelaID: string): Observable<any> {
+    return this.http.get(routes.base + routes.getCultivosOfParcela + parcelaID);
+  }
+
 }
