@@ -16,26 +16,26 @@ export class AppComponent {
     {
       title: "PRINCIPAL",
       url: "/home",
-      icon: "calendar-outline"
+      icon: "home-outline"
     },    {
       title: "GASTOS",
       url: "/gastos",
-      icon: "calendar-outline"
+      icon: "cash-outline"
     },
     {
       title: "SOCIOS",
-      url: "/",
-      icon: "swap-horizontal-outline"
+      url: "/socios",
+      icon: "people-outline"
     },
     {
       title: "PARCELAS",
-      url: "/",
+      url: "/parcelas",
       icon: "map-outline"
     },
     {
       title: "CULTIVOS",
-      url: "/",
-      icon: "wallet-outline"
+      url: "/cultivos",
+      icon: "leaf-outline"
     }
   ];
 

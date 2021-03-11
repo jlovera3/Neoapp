@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Parcelas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-content>
+    <ion-item>
+      <ion-label>Socio </ion-label>
+      <ion-select [(ngModel)]="socioID" placeholder="Seleccione uno" interface="action-sheet" okText="Aceptar"
+        (ionChange)="socioChanged()">
+        <ion-select-option *ngFor="let item of socios" value="{{item._id}}">{{item.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card-content>
+</ion-content>

@@ -5,6 +5,7 @@ import { Cultivo } from 'src/app/models/Cultivo';
 import { Parcela } from 'src/app/models/Parcela';
 import { Socio } from 'src/app/models/Socio';
 import { ApiService } from 'src/app/services/api.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-creategasto',
@@ -34,7 +35,8 @@ export class CreategastoPage implements OnInit {
   fecha: string = "";
 
   constructor(private apiSvc: ApiService,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private ui: UiService) { }
 
   async ngOnInit() {
     await this.loadSocios();
@@ -124,12 +126,16 @@ export class CreategastoPage implements OnInit {
       this.apiSvc.createGasto([this.socioID, this.parcelaID, this.cultivoID], this.concepto, this.importe, this.cantidad, this.fecha)
         .subscribe(data => {
           console.log(data);
+          this.modalCtrl.dismiss();
+          this.ui.presentToast('Añadido correctamente', 3000, 'success')
         })
     } else {
       this.apiSvc.createGasto([this.centroID], this.concepto, this.importe, this.cantidad, this.fecha)
-      .subscribe(data => {
-        console.log(data);
-      })
+        .subscribe(data => {
+          console.log(data);
+          this.modalCtrl.dismiss();
+          this.ui.presentToast('Añadido correctamente', 3000, 'success')
+        })
     }
   }
 

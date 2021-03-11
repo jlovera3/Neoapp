@@ -146,7 +146,6 @@ export class ApiService {
   }
   
   createGasto(idRelacionado: string[], concepto: string, importe: number, cantidad: number, fecha: string) {
-    
     const body = {
       idRelacionado: idRelacionado,
       concepto: concepto,
@@ -154,7 +153,6 @@ export class ApiService {
       cantidad: cantidad, 
       fecha : fecha
     }
-
     return this.http.post(routes.base + routes.createGasto, body);
   }
   
