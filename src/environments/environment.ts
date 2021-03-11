@@ -24,6 +24,9 @@ export const routes = {
 
   //---------CULTIVOS-------------
   getCultivosOfParcela: '/cultivos/',
+
+  //---------CENTROS--------------
+  getAllCentros: '/centro'
 };
 
 /*

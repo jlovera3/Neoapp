@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Centro } from 'src/app/models/Centro';
 import { Cultivo } from 'src/app/models/Cultivo';
 import { Parcela } from 'src/app/models/Parcela';
 import { Socio } from 'src/app/models/Socio';
@@ -10,31 +12,44 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./creategasto.page.scss'],
 })
 export class CreategastoPage implements OnInit {
+  
+  modalidad: string = "1";
 
+  private centros: Centro[]=[];
   private socios: Socio[] = [];
   private parcelas: Parcela[] = [];
   private cultivos: Cultivo[] = [];
-  socioSelected:boolean=false;
-  parcelaSelected:boolean=false;
-  socioID: string="";
-  parcelaID: string="";
-  cultivoID: string="";
 
-  constructor(private apiSvc: ApiService) { }
+  socioSelected: boolean = false;
+  parcelaSelected: boolean = false;
+
+  centroID: string="";
+  socioID: string = "";
+  parcelaID: string = "";
+  cultivoID: string = "";
+
+  concepto: string = "";
+  cantidad: number = 0;
+  importe: number = 0;
+  fecha: string = "";
+
+  constructor(private apiSvc: ApiService,
+    private modalCtrl: ModalController) { }
 
   async ngOnInit() {
     await this.loadSocios();
+    await this.loadCentros();
   }
 
-  socioChanged(){
+  socioChanged() {
     console.log(this.socioID)
-    this.socioSelected=true;
+    this.socioSelected = true;
     this.loadParcelasDeUnSocio(this.socioID);
   }
 
-  parcelaChanged(){
+  parcelaChanged() {
     console.log(this.parcelaID)
-    this.parcelaSelected=true;
+    this.parcelaSelected = true;
     this.loadCultivosDeUnaParcela(this.parcelaID);
   }
 
@@ -48,6 +63,20 @@ export class CreategastoPage implements OnInit {
         this.socios.push(item)
       }
       console.log(this.socios)
+    });
+  }
+  
+  async loadCentros() {
+    this.apiSvc.getAllCentros().subscribe((res: any) => {
+      for (let i = 0; i < res.length; i++) {
+        let item: Centro = {
+          _id: res[i]._id,
+          name: res[i].name,
+          extensionTotal: res[i].extensionTotal
+        }
+        this.centros.push(item)
+      }
+      console.log(this.centros)
     });
   }
 
@@ -66,7 +95,7 @@ export class CreategastoPage implements OnInit {
     });
   }
 
-  loadCultivosDeUnaParcela(parcelaID: string){
+  loadCultivosDeUnaParcela(parcelaID: string) {
     this.apiSvc.getCultivosOfParcela(parcelaID).subscribe((res: any) => {
       for (let i = 0; i < res.length; i++) {
         let item: Cultivo = {
@@ -82,6 +111,20 @@ export class CreategastoPage implements OnInit {
       }
       console.log(this.cultivos)
     });
+  }
+
+  cancelar() {
+    this.modalCtrl.dismiss();
+  }
+
+  create() {
+    console.log('aqui se crea gasto')
+    console.log(this.concepto, this.importe, this.cantidad, this.fecha)
+    if(this.modalidad=="1"){
+      this.apiSvc.createGastoSocio(this.socioID, this.parcelaID, this.cultivoID, this.concepto, this.importe, this.cantidad, this.fecha)
+    }else{
+      this.apiSvc.createGastoCentro(this.centroID, this.concepto, this.importe, this.cantidad, this.fecha)
+    }
   }
 
 }
